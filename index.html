@@ -9,7 +9,7 @@
     <!-- https://www.w3schools.com/js/js_cookies.asp -->
 
     <div>
-        <p></p>
+        <p id="welcomeMessage"></p>
     </div>
 
     <!-- detyra: me hek alert ne js e me ba ne html -->
@@ -49,11 +49,13 @@
             let username = getCookie("username");
             if (username != "") {
                 // alert("Welcome again " + username);
+                document.getElementById("welcomeMessage").innerText = "Welcome again" + " " + username;
             } else {
             username = prompt("Please enter your name:", "");
             // && eshte AND -> dyjat duhet mu kan te sakta
             if (username != "" && username != null) {
                 setCookie("username", username, 365);
+                document.getElementById("welcomeMessage").innerText = "Welcome"+ " " + username;
                 }
             }
         }
