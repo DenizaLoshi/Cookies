@@ -10,14 +10,18 @@
 
     <div>
         <p id="welcomeMessage"></p>
+        <p>Please enter your name:</p>
+        <input type="text" id="message">
+        <button onclick="submitName()" id="submit">Submit</button>
+
     </div>
 
     <!-- detyra: me hek alert ne js e me ba ne html -->
 
     <script>
-        document.cookie = "username = John Doe; expires = Thu, 18 Dec 2025 12:00:00 UTC";
+        // document.cookie = "username = John Doe; expires = Thu, 18 Dec 2025 12:00:00 UTC";
 
-        console.log(document.cookie);
+        // console.log(document.cookie);
 
 
         function setCookie(cname, cvalue, exdays) {
@@ -51,14 +55,19 @@
                 // alert("Welcome again " + username);
                 document.getElementById("welcomeMessage").innerText = "Welcome again" + " " + username;
             } else {
-            username = prompt("Please enter your name:", "");
+            // username = prompt("Please enter your name:", "");
+            var username_ = document.getElementById("message").value;
+
+            // add onclick() here
+            document.getElementById("submit").addEventListener("click", submitName);
+
             // && eshte AND -> dyjat duhet mu kan te sakta
             if (username != "" && username != null) {
                 setCookie("username", username, 365);
-                document.getElementById("welcomeMessage").innerText = "Welcome"+ " " + username;
                 }
             }
         }
+        
     </script>
 
 </body>
