@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookies</title>
+</head>
+<body onload="checkCookie()">
+    <!-- https://www.w3schools.com/js/js_cookies.asp -->
+
+    <div>
+        <p></p>
+    </div>
+
+    <!-- detyra: me hek alert ne js e me ba ne html -->
+
+    <script>
+        document.cookie = "username = John Doe; expires = Thu, 18 Dec 2025 12:00:00 UTC";
+
+        console.log(document.cookie);
+
+
+        function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            // per gjdo projekt se e bajna me Cookies perdoret qikjo formul
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            let expires = "expires="+ d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+            // path eshte per me met vetem ne javascript e mos u kontrollu HTML
+        }
+
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for(let i = 0; i <ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        function checkCookie() {
+            let username = getCookie("username");
+            if (username != "") {
+                // alert("Welcome again " + username);
+            } else {
+            username = prompt("Please enter your name:", "");
+            // && eshte AND -> dyjat duhet mu kan te sakta
+            if (username != "" && username != null) {
+                setCookie("username", username, 365);
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
